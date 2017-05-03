@@ -6,4 +6,4 @@ const
     year: {type: Number}
   })
 
-module.exports = mongoose.model('Cars', carsSchema
+module.exports = mongoose.model('Cars', carsSchema)
