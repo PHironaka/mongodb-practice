@@ -21,12 +21,12 @@ module.exports = {
     })
   },
   edit: function(req, res){
-    carModel.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updateCar) => {
+    carModel.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedCar) => {
       res.json({success:true, car: updatedCar})
     })
   },
   delete: function(req, res){
-    carModel.findByIdAndRemove(req.params.id, (err, deleteCar) => {
+    carModel.findByIdAndRemove(req.params.id, (err, deletedCar) => {
       res.json({success: true, car: deletedCar})
     })
   }
