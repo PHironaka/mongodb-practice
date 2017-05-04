@@ -1,31 +1,30 @@
 const
   express = require('express'),
-  app = express()
+  app = express(),
+  bodyParser = require('body-parser'),
+  morgan = require('morgan'),
+  mongoose = require('mongoose'),
+  carController = require('./controllers/carsController.js')
 
- app.get('/', (req, res) => {
+mongoose.connect('mongodb://localhost/carShop', (err) => {
+  console.log(err || 'Connected to mongo!')
+})
 
- })
+app.use(morgan('dev'))
+app.use(bodyParser.json())
 
- app.get('/cars', (req, res) => {
+app.get('/', carController.home)
 
- })
+app.get('/cars', carController.list)
 
- app.post('/cars/:id', (req, res) => {
+app.post('/cars', carController.create)
 
- })
+app.get('/cars/:id', carController.show)
 
- app.get('/cars/:id', (req,res) => {
+app.patch('cars/:id', carController.edit)
 
- })
+app.delete('cars/:id', carController.delete)
 
- app.patch('cars/:id', (req,res) => {
-
- })
-
- app.delete('cars/:id', (req,res) => {
-
- })
-
-  app.listen(1234, (err) => {
-    console.log(err || "Server running on 1234")
-  })
+app.listen(1234, (err) => {
+  console.log(err || "Server running on 1234")
+})
